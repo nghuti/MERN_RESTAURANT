@@ -1,0 +1,62 @@
+.container{
+    padding: 3vw 3vw 3vw 3vw;
+    font-size: 20px;
+    line-height: 1.6;
+    display: flex;
+    overflow: hidden;
+}
+
+.img-container img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.form-booktable{
+    padding: 15px 30px;
+    flex: 1;
+    background-color: #EDE9D2;
+   
+}
+
+.form-booktable h2 {
+    font-family: 'Italianno', serif;
+    font-size: 70px;
+    font-weight:normal;
+    margin-bottom: 10px;
+    text-align: center;
+    color: #1F2629;
+    background-color: transparent;
+}
+
+.form-booktable form{
+    background-color: #EDE9D2;
+    display: flex; /* Sử dụng Flexbox cho form */
+    flex-direction: column; /* Đặt chiều dọc cho các phần tử bên trong form */
+    align-items: center; /* Căn giữa tất cả các phần tử theo chiều ngang */
+}
+.form-booktable input,select{
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    border: 2px solid #1F2629;
+    font-size: 24px;
+    color: #333;
+    background-color:#EDE9D2;
+}
+
+.form-booktable button {
+    padding: 10px 50px;
+    width: fit-content;
+    background-color: #1F2629;
+    color: #fff;
+    border-radius: 20px;
+    font-size: 30px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #333;
+}
