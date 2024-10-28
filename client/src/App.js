@@ -14,9 +14,15 @@ import BookTable from './Pages/Reservation/Reservation.js';
 import Login from './Pages/Login/Login.js';
 import Singup from './Pages/Signup/Signup.js';
 
+
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { AuthProvider } from './context/AuthContext';
+
 function App() {
   return (
-    <Router>
+    <AuthProvider>
+          <Router>
       <div className="App">
         <Header />
         <Routes>
@@ -31,8 +37,12 @@ function App() {
        
         </Routes>
         <Footer />
+        <ToastContainer position="top-right" autoClose={3000} />
       </div>
     </Router>
+    </AuthProvider>
+    
+    
   );
 }
 

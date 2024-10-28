@@ -1,19 +1,62 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Login.css'; 
-import { Link } from 'react-router-dom';
+import { Link , useNavigate} from 'react-router-dom';
+import axios from 'axios';
+import { ToastContainer, toast } from 'react-toastify';
+  import 'react-toastify/dist/ReactToastify.css';
+
+  import { useAuth } from '../../context/AuthContext';
 
 const Login = () => {
+
+
+  const { login } = useAuth();
+
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const navigate = useNavigate();
+
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post('http://localhost:4000/api/user/login', {
+        email,
+        password
+      });
+
+      console.log('Response from server:', response.data); // Thêm dòng này
+
+      if (response.data.success) {
+        localStorage.setItem('token', response.data.token);
+
+        console.log('User data:', response.data.user);
+
+        // Giả sử response.data có chứa thông tin user
+        login(response.data.user); // Lưu thông tin user vào context
+        toast.success('Đăng nhập thành công!');
+        navigate('/');
+      } else {
+        toast.error(response.data.message);
+      }
+    } catch (error) {
+      toast.error('Đăng nhập thất bại!');
+      console.error(error);
+    }
+};
+
   return (
     
+
     <div className="login-container">
     <h2 className="login-title">Đăng nhập</h2>
-    <form className="login-form">
+    <form className="login-form" onSubmit={handleSubmit}>
       <div className="form-group">
         
-        <input type="email" id="email" className="form-input" placeholder='email...' required />
+        <input type="email" value={email} id="email" onChange={(e) => setEmail(e.target.value)} className="form-input" placeholder='email...' required />
       </div>
       <div className="form-group">
-        <input type="password" id="password" className="form-input" placeholder='mật khẩu...' required />
+        <input type="password" id="password" value={password} onChange={(e) => setPassword(e.target.value)} className="form-input" placeholder='mật khẩu...' required />
       </div>
       <button type="submit" className="submit-btn">Đăng nhập</button>
 

@@ -9,7 +9,7 @@ const Slidebar = () => {
           
           <NavLink className='flex items-center gap-3 border border-gray-300 border-r-0 px-3 py-2 rounded-1' to="/add">
              <img className='w-5 h-5' src={assets.add_icon} alt=''/>
-             <p className='hidden md:block'>Them mon </p>
+             <p className='hidden md:block'>Thêm món </p>
           </NavLink>
 
 
@@ -23,7 +23,7 @@ const Slidebar = () => {
 
           <NavLink className='flex items-center gap-3 border border-gray-300 border-r-0 px-3 py-2 rounded-1' to="/reservation">
              <img className='w-5 h-5' src={assets.order_icon} alt=''/>
-             <p className='hidden md:block'>Dat ban </p>
+             <p className='hidden md:block'>Đặt bàn </p>
           </NavLink>
 
 

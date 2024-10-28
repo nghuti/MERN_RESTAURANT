@@ -13,6 +13,11 @@
 }
 
 
+select,input,textarea{
+  border : 1px dolid #c2c2c2;
+  outline-color: #11123e;
+  border-radius: 4px;
+}
 
 
 .active{

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Navbar from './components/Navbar'
 import Sidebar from './components/Sidebar'
 import {Routes,Route} from 'react-router-dom'
@@ -7,30 +7,41 @@ import List from './pages/List'
 import Reservation from './pages/Reservation'
 import Login from './components/Login'
 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+
+export const backendUrl = import.meta.env.VITE_BACKEND_URL
 
 const App = () => {
 
+const [token,setToken] = useState(localStorage.getItem('token')?localStorage.getItem('token'):'');
 
-
+useEffect(()=>{
+  localStorage.setItem('token',token)
+},[token])
 
   return (
     <div className='bg-gray-50 min-h-screen'>
-    <>
-     <Navbar/>
-     <hr />
-     <div className='flex w-full'>
-       <Sidebar/>
-       <div className='w-[70%] mx-auto ml[max(5vw,25px)] my-8 text-gray-600 text-base'>
-         <Routes>
-           <Route path='/add' element={<Add/>} />
-           <Route path='/list' element={<List/>} />
-           <Route path='/Reservation' element={<Reservation/>} />
-         </Routes>
-       </div>
-     </div>
-  </>
-   
-     
+      <ToastContainer />
+      {token === ""
+      ? <Login setToken={setToken}/>
+      :  <>
+      <Navbar setToken={setToken}/>
+      <hr />
+      <div className='flex w-full'>
+        <Sidebar/>
+        <div className='w-[70%] mx-auto ml[max(5vw,25px)] my-8 text-gray-600 text-base'>
+          <Routes>
+            <Route path='/add' element={<Add token ={token} />} />
+            <Route path='/list' element={<List token ={token}/>} />
+            <Route path='/Reservation' element={<Reservation token ={token}/>} />
+          </Routes>
+        </div>
+      </div>
+     </>
+      }
+  
  </div>
   )
 }
